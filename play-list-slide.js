@@ -26,12 +26,25 @@ export class PlayListSlide extends DDDSuper(I18NMixin(LitElement)) {
       margin: 10px;
       border: 2px solid blue;
     }
+    
+    .top {
+        font-size: 14px;
+        color: white;
+    }
+    h2 {
+        font-size: 24px;
+        margin: 10px 0;
+        color: white;
+    }
   `;
 
   // Lit render the HTML
   render() {
     return html`
-<div>Playlist</div>`;
+<div class="card">
+  <div class="top">Top line heading</div>
+  <h2>Slide 1, sub-heading</h2>
+</div>`;
   }
 
 }

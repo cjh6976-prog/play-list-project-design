@@ -33,7 +33,7 @@ export class PlayListArrow extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-    <button></button>
+    <button>Arrow</button>
 `;
   }
 
