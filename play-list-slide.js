@@ -18,35 +18,77 @@ export class PlayListSlide extends DDDSuper(I18NMixin(LitElement)) {
     return "play-list-slide";
   }
 
-  static styles = css`
+  static get properties() {
+    return {
+        ...super.properties,
+        topHeading: { type: String, attribute: "top-heading" },
+        secondHeading: { type: String, attribute: "second-heading" },
+        active: { type: Boolean, reflect: true },
+    };
+}
+
+  static get styles() {
+    return [super.styles, css`
     :host {
       display: block;
-      text-align: center;
-      padding: 20px;
-      margin: 10px;
-      border: 2px solid blue;
     }
-    
-    .top {
-        font-size: 14px;
-        color: white;
+    :host([active]) {
+      display: block;
     }
-    h2 {
-        font-size: 24px;
-        margin: 10px 0;
-        color: white;
+    .slide-wrapper {
+        color: lightblue;
     }
-  `;
+    h3 {
+        font-size: 20px;
+        color: var(--ddd-theme-default-link80);
+        margin-bottom: 5px;
+    }
+    h4 {
+        font-size: 40px;
+        color: var(--ddd-theme-default-link);
+        margin: 0;
+    }
+  
+    .line {
+        border: none;
+        border-top: 2px solid var(--ddd-theme-default-skyBlue);
+        margin: 16px 0;
+        width: 40px;
+    }
+    div::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
 
+div::-webkit-scrollbar-track {
+  background: lightgray;        /* color of the tracking area */
+}
+
+div::-webkit-scrollbar-thumb {
+  background-color: gray;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px gray;  /* creates padding around scroll thumb */
+}
+    .content {
+        color: black;
+        overflow-y: auto;
+        max-height: 175px;
+    }
+  `];
+  } 
   // Lit render the HTML
   render() {
     return html`
-<div class="card">
-  <div class="top">Top line heading</div>
-  <h2>Slide 1, sub-heading</h2>
-</div>`;
-  }
+<div class="slide-wrapper">
+    <h3>${this.topHeading}</h3>
+    <h4>${this.secondHeading}</h4>
+    <hr class="line">
+    <div class="content">
+    <slot></slot>
+</div>
 
+</div>
+`;
+  }
 }
 
 
